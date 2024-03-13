@@ -1,0 +1,81 @@
+<div style="padding:20px;">
+  <h2>
+    DOCTORES
+  </h2>
+
+  <div class="row" style="width: 98%; margin-left: 1%;">
+    <form [formGroup]="form" autocomplete="on">
+      <div class="row">
+        <div class="col-10 col-md-10">
+          <mat-form-field class="col-12 col-md-12" appearance="outline">
+            <mat-label>Buscar</mat-label>
+            <input matInput formControlName="search" (keyup)="applyFilter($event)">
+          </mat-form-field>
+        </div>
+        <div class="col-2 col-md-2" style="text-align: center;">
+          <button
+            mat-mini-fab
+            color="primary"
+            title="Agregar Doctor"
+            style="margin-right: 20px; margin-top:10px;"
+            (click)="addDoctor();">
+              <mat-icon>person</mat-icon>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="clsTableContainer mt-2">
+    <mat-table mat-table [dataSource]="dataSource" matSort style="width: 98%; margin-left: 1%;">
+
+      <ng-container>
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" [attr.colspan]="displayedColumns.length">
+            [ No se encontraron doctores ]
+          </td>
+        </tr>
+      </ng-container>
+
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+        <mat-cell *matCellDef="let element" data-label="id"> {{element.id}} </mat-cell>
+      </ng-container>
+
+
+      <ng-container matColumnDef="nombre">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
+        <mat-cell *matCellDef="let element" data-label="nombre"> {{element.nombre}}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="acciones">
+        <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+        <mat-cell *matCellDef="let element" style="text-align:center;">
+          <button
+            mat-mini-fab
+            color="primary"
+            title="Seleccionar"
+            (click)="selectDoctor(element);">
+              <mat-icon>forward</mat-icon>
+          </button>
+          <button
+            mat-mini-fab
+            color="accent"
+            title="Aceptar asociación"
+            style="margin-left: 10px;"
+            (click)="removeDoctor(element);">
+              <mat-icon>remove</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;">
+
+      </mat-row>
+    </mat-table>
+    <mat-paginator #paginator="matPaginator" [pageSizeOptions]="[25, 50 , 100]" showFirstLastButtons></mat-paginator>
+
+  </div>
+</div>

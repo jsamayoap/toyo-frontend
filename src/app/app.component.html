@@ -1,0 +1,27 @@
+<mat-drawer-container class="drawerContainer" hasBackdrop="false">
+
+  <mat-drawer #drawer mode="side" position="start" style="max-width:250px;">
+    <!-- <img src="{{src.logo}}" style="width:90%; padding-left:5%; padding-top:10px;"> -->
+    <img src="../assets/logo.png" style="width:80%; margin-left: 10%; margin-top: 10px;">
+    <div style="width:90%; padding:5%;"></div>
+
+    <div routerLink="doctores" style="cursor: pointer; padding: 10px;">DOCTORES</div>
+    <div routerLink="pacientes" style="cursor: pointer; padding: 10px;">PACIENTES</div>
+  </mat-drawer>
+
+  <mat-drawer-content>
+
+    <!-- Toolbar -->
+    <div class="toolbar" role="banner">
+      <mat-icon style="padding: 0px; margin-left:10px;" (click)="drawer.toggle()" class="mainMenuIcon" id="sideasMenuBtn">menu</mat-icon>
+      <span style="margin-left: 10px;">CONSULTORIO M&Eacute;DICO</span>
+      <div class="spacer"></div>
+    </div>
+    <!-- Content -->
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+
+  </mat-drawer-content>
+
+</mat-drawer-container>
